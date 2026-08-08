@@ -5,9 +5,9 @@ export default function Home() {
   return (
     <main className="mx-auto flex max-w-md flex-col gap-5 px-4 py-8">
       <div className="text-center">
-        <h1 className="text-2xl font-bold text-stone-800">🍲 Rak Resep</h1>
+        <h1 className="text-2xl font-bold text-stone-800">🍲 Dapur Mingguan</h1>
         <p className="mt-1 text-sm text-stone-500">
-          Rak permanen untuk resep andalanmu
+          Resep tersimpan, belanja tanpa mikir
         </p>
         <Link
           href="/panduan"
@@ -19,6 +19,19 @@ export default function Home() {
 
       <div className="flex flex-col gap-4">
         <Link
+          href="/daftar-belanja"
+          className="flex flex-col items-center gap-2 rounded-3xl border border-moss-200 bg-white p-6 text-center shadow-sm active:bg-moss-50"
+        >
+          <IconBasket className="h-16 w-16" />
+          <span className="text-xl font-bold text-stone-800">
+            Daftar Belanja
+          </span>
+          <span className="text-sm text-stone-500">
+            Pilih resep minggu ini, bahannya otomatis digabung
+          </span>
+        </Link>
+
+        <Link
           href="/rak"
           className="flex flex-col items-center gap-2 rounded-3xl border border-moss-200 bg-white p-6 text-center shadow-sm active:bg-moss-50"
         >
@@ -28,29 +41,16 @@ export default function Home() {
             Lihat & tambah resep yang sudah terbukti cocok
           </span>
         </Link>
-
-        <Link
-          href="/rencana"
-          className="flex flex-col items-center gap-2 rounded-3xl border border-moss-200 bg-white p-6 text-center shadow-sm active:bg-moss-50"
-        >
-          <IconBasket className="h-16 w-16" />
-          <span className="text-xl font-bold text-stone-800">
-            Rencana Mingguan
-          </span>
-          <span className="text-sm text-stone-500">
-            Pilih resep minggu ini & buat daftar belanja
-          </span>
-        </Link>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
         <Link
-          href="/roda"
+          href="/cari-ide"
           className="flex flex-col items-center gap-1.5 rounded-2xl border border-moss-200 bg-white p-4 text-center shadow-sm active:bg-moss-50"
         >
           <IconWheel className="h-10 w-10" />
           <span className="text-sm font-semibold text-stone-800">
-            Roda Putar Tematik
+            Cari Ide Resep
           </span>
         </Link>
 

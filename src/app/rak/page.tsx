@@ -27,8 +27,8 @@ export default async function RakPage() {
       {items.length === 0 && (
         <div className="rounded-2xl border border-dashed border-moss-300 bg-white p-6 text-center text-sm text-stone-500">
           Rak masih kosong. Tambah resep pertamamu, atau coba{" "}
-          <Link href="/roda" className="font-semibold text-moss-600">
-            Roda Putar Tematik
+          <Link href="/cari-ide" className="font-semibold text-moss-600">
+            Cari Ide Resep
           </Link>
           .
         </div>

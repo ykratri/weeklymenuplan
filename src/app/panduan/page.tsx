@@ -12,23 +12,23 @@ const langkah = [
   {
     Icon: IconBookmark,
     title: "2. Isi Kotak Referensi (opsional)",
-    desc: "Kalau kamu punya ide resep baru yang belum sempat dicoba (lihat dari TikTok/YouTube), simpan dulu di sini. Ini bank cadangan yang dipakai Roda Putar.",
+    desc: "Kalau kamu punya ide resep baru yang belum sempat dicoba (lihat dari TikTok/YouTube), simpan dulu di sini. Ini bank cadangan yang dipakai Cari Ide Resep.",
     href: "/referensi",
     linkLabel: "Buka Kotak Referensi",
   },
   {
     Icon: IconWheel,
-    title: "3. Bosan? Putar Roda Putar Tematik",
-    desc: "Pilih tema masakan, lalu tekan Putar untuk dapat 1 ide resep acak dari Kotak Referensi. Suka? Tekan \"Tambah ke Rak\" — resep otomatis pindah ke Rak Resep.",
-    href: "/roda",
-    linkLabel: "Buka Roda Putar",
+    title: "3. Bosan? Cari Ide Resep",
+    desc: "Pilih tema masakan, lalu geser kartu ide resep dari Kotak Referensi — geser kanan (atau tekan ➕) untuk simpan ke Rak, geser kiri (atau tekan ✕) untuk lewati.",
+    href: "/cari-ide",
+    linkLabel: "Buka Cari Ide Resep",
   },
   {
     Icon: IconBasket,
-    title: "4. Buat Rencana Mingguan",
+    title: "4. Buat Daftar Belanja",
     desc: "Centang beberapa resep dari Rak yang mau dimasak minggu ini. Daftar belanjanya otomatis dibuat (bahan yang sama digabung), tinggal disalin sebagai teks.",
-    href: "/rencana",
-    linkLabel: "Buka Rencana Mingguan",
+    href: "/daftar-belanja",
+    linkLabel: "Buka Daftar Belanja",
   },
 ];
 
@@ -40,7 +40,7 @@ export default function PanduanPage() {
           ← Kembali ke Beranda
         </Link>
         <h1 className="mt-2 text-2xl font-bold text-stone-800">
-          Cara Pakai Rak Resep
+          Cara Pakai Dapur Mingguan
         </h1>
         <p className="mt-1 text-sm text-stone-500">
           4 langkah sederhana, tidak perlu dihafal — tinggal ikuti urutannya.

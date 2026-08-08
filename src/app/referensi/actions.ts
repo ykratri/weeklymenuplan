@@ -21,7 +21,7 @@ export async function addReferenceItem(formData: FormData) {
   });
 
   revalidatePath("/referensi");
-  revalidatePath("/roda");
+  revalidatePath("/cari-ide");
   redirect("/referensi");
 }
 
@@ -30,5 +30,5 @@ export async function deleteReferenceItem(formData: FormData) {
   if (!id) return;
   await db.delete(referenceBox).where(eq(referenceBox.id, id));
   revalidatePath("/referensi");
-  revalidatePath("/roda");
+  revalidatePath("/cari-ide");
 }

@@ -9,8 +9,8 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Rak Resep",
-  description: "Rak resep mingguan untuk ibu rumah tangga",
+  title: "Dapur Mingguan",
+  description: "Resep tersimpan, belanja tanpa mikir",
 };
 
 export const viewport: Viewport = {

@@ -28,7 +28,7 @@ export default async function ReferensiPage() {
       </div>
       <p className="text-sm text-stone-500">
         Kotak cadangan ide resep (dari TikTok/YouTube/artikel) yang belum ada
-        di rakmu. Dipakai oleh Roda Putar Tematik.
+        di rakmu. Dipakai oleh Cari Ide Resep.
       </p>
 
       {items.length === 0 && (

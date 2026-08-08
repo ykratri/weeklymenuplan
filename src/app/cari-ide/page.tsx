@@ -1,7 +1,7 @@
 import { sql } from "drizzle-orm";
 import { db } from "@/db";
 import { recipes, referenceBox } from "@/db/schema";
-import RodaClient from "./RodaClient";
+import CariIdeClient from "./CariIdeClient";
 
 export const dynamic = "force-dynamic";
 
@@ -17,7 +17,7 @@ async function getAvailableThemes(): Promise<string[]> {
   return result.rows.map((row) => row.tag);
 }
 
-export default async function RodaPage() {
+export default async function CariIdePage() {
   const themes = await getAvailableThemes();
-  return <RodaClient availableThemes={themes} />;
+  return <CariIdeClient availableThemes={themes} />;
 }

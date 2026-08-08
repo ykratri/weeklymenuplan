@@ -6,9 +6,9 @@ import { IconBasket, IconBook, IconHome, IconWheel } from "./icons";
 
 const items = [
   { href: "/", label: "Beranda", Icon: IconHome },
+  { href: "/daftar-belanja", label: "Belanja", Icon: IconBasket },
   { href: "/rak", label: "Rak", Icon: IconBook },
-  { href: "/roda", label: "Roda", Icon: IconWheel },
-  { href: "/rencana", label: "Rencana", Icon: IconBasket },
+  { href: "/cari-ide", label: "Cari Ide", Icon: IconWheel },
 ];
 
 export default function BottomNav() {
