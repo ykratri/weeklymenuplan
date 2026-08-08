@@ -11,8 +11,15 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://weeklymenuplan.vercel.app"),
   title: "Weekly Kitchen",
   description: "Recipes saved, shopping made easy",
+  openGraph: {
+    title: "Weekly Kitchen",
+    description: "Recipes saved, shopping made easy",
+    siteName: "Weekly Kitchen",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {
