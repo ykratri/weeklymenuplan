@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import Link from "next/link";
 import type { ReferenceItem } from "@/db/schema";
+import { IconWheel } from "@/components/icons";
 import { spinTheme, moveToRak } from "./actions";
 
 export default function RodaClient({
@@ -38,7 +39,9 @@ export default function RodaClient({
 
   return (
     <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">
-      <h1 className="text-xl font-bold text-stone-800">🎡 Roda Putar Tematik</h1>
+      <h1 className="flex items-center gap-2 text-xl font-bold text-stone-800">
+        <IconWheel className="h-8 w-8" /> Roda Putar Tematik
+      </h1>
       <p className="text-sm text-stone-500">
         Pilih tema, lalu putar untuk dapat ide resep baru dari Kotak
         Referensi.
@@ -53,8 +56,8 @@ export default function RodaClient({
               onClick={() => handleSpin(t)}
               className={`rounded-full border px-3.5 py-2 text-sm font-medium ${
                 theme === t
-                  ? "border-orange-600 bg-orange-600 text-white"
-                  : "border-orange-200 bg-white text-stone-700"
+                  ? "border-moss-600 bg-moss-600 text-white"
+                  : "border-moss-200 bg-white text-stone-700"
               }`}
             >
               {t}
@@ -77,12 +80,12 @@ export default function RodaClient({
           type="text"
           name="customTheme"
           placeholder="Atau ketik tema baru..."
-          className="flex-1 rounded-xl border border-orange-200 bg-white px-4 py-3 text-base text-stone-800 outline-none focus:border-orange-500"
+          className="flex-1 rounded-xl border border-moss-200 bg-white px-4 py-3 text-base text-stone-800 outline-none focus:border-moss-500"
         />
         <button
           type="submit"
           disabled={isPending}
-          className="rounded-xl bg-orange-600 px-5 py-3 text-base font-semibold text-white shadow-sm active:bg-orange-700 disabled:opacity-50"
+          className="rounded-xl bg-moss-600 px-5 py-3 text-base font-semibold text-white shadow-sm active:bg-moss-700 disabled:opacity-50"
         >
           Putar
         </button>
@@ -102,13 +105,13 @@ export default function RodaClient({
       )}
 
       {!isPending && result === null && (
-        <div className="rounded-2xl border border-dashed border-orange-300 bg-white p-6 text-center text-sm text-stone-500">
+        <div className="rounded-2xl border border-dashed border-moss-300 bg-white p-6 text-center text-sm text-stone-500">
           Belum ada resep di Kotak Referensi untuk tema{" "}
           <span className="font-semibold">&quot;{theme}&quot;</span>.
           <div className="mt-3">
             <Link
               href="/referensi/tambah"
-              className="inline-block rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-white"
+              className="inline-block rounded-full bg-moss-600 px-4 py-2 text-sm font-semibold text-white"
             >
               + Tambah ke Kotak Referensi
             </Link>
@@ -117,7 +120,7 @@ export default function RodaClient({
       )}
 
       {!isPending && result && (
-        <div className="rounded-2xl border border-orange-200 bg-white p-4 shadow-sm">
+        <div className="rounded-2xl border border-moss-200 bg-white p-4 shadow-sm">
           <h2 className="text-lg font-semibold text-stone-800">
             {result.name}
           </h2>
@@ -127,7 +130,7 @@ export default function RodaClient({
               {result.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-orange-100 px-2.5 py-0.5 text-xs font-medium text-orange-700"
+                  className="rounded-full bg-moss-100 px-2.5 py-0.5 text-xs font-medium text-moss-700"
                 >
                   {tag}
                 </span>
@@ -147,7 +150,7 @@ export default function RodaClient({
               href={result.sourceLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-block text-sm text-orange-600 underline"
+              className="mt-2 inline-block text-sm text-moss-600 underline"
             >
               🔗 Lihat sumber
             </a>
@@ -158,7 +161,7 @@ export default function RodaClient({
               type="button"
               onClick={() => handleAdd(result.id)}
               disabled={isPending}
-              className="flex-1 rounded-xl bg-orange-600 py-3 text-sm font-semibold text-white shadow-sm active:bg-orange-700 disabled:opacity-50"
+              className="flex-1 rounded-xl bg-moss-600 py-3 text-sm font-semibold text-white shadow-sm active:bg-moss-700 disabled:opacity-50"
             >
               ➕ Tambah ke Rak
             </button>
@@ -166,7 +169,7 @@ export default function RodaClient({
               type="button"
               onClick={() => handleSpin(theme)}
               disabled={isPending}
-              className="rounded-xl border border-orange-200 bg-white px-4 py-3 text-sm font-semibold text-stone-700 disabled:opacity-50"
+              className="rounded-xl border border-moss-200 bg-white px-4 py-3 text-sm font-semibold text-stone-700 disabled:opacity-50"
             >
               🎲 Putar lagi
             </button>

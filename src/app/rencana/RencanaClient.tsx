@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Recipe } from "@/db/schema";
+import { IconBasket } from "@/components/icons";
 
 export default function RencanaClient({ recipes }: { recipes: Recipe[] }) {
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
@@ -43,7 +44,9 @@ export default function RencanaClient({ recipes }: { recipes: Recipe[] }) {
 
   return (
     <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">
-      <h1 className="text-xl font-bold text-stone-800">🛒 Rencana Mingguan</h1>
+      <h1 className="flex items-center gap-2 text-xl font-bold text-stone-800">
+        <IconBasket className="h-8 w-8" /> Rencana Mingguan
+      </h1>
       <p className="text-sm text-stone-500">
         Pilih resep untuk minggu ini, daftar belanja dibuat otomatis.
       </p>
@@ -56,15 +59,15 @@ export default function RencanaClient({ recipes }: { recipes: Recipe[] }) {
               key={recipe.id}
               className={`flex items-center gap-3 rounded-2xl border p-4 shadow-sm ${
                 checked
-                  ? "border-orange-500 bg-orange-50"
-                  : "border-orange-200 bg-white"
+                  ? "border-moss-500 bg-moss-50"
+                  : "border-moss-200 bg-white"
               }`}
             >
               <input
                 type="checkbox"
                 checked={checked}
                 onChange={() => toggle(recipe.id)}
-                className="h-5 w-5 accent-orange-600"
+                className="h-5 w-5 accent-moss-600"
               />
               <span className="flex-1">
                 <span className="block font-semibold text-stone-800">
@@ -82,7 +85,7 @@ export default function RencanaClient({ recipes }: { recipes: Recipe[] }) {
       </div>
 
       {selectedIds.size > 0 && (
-        <div className="rounded-2xl border border-orange-200 bg-white p-4 shadow-sm">
+        <div className="rounded-2xl border border-moss-200 bg-white p-4 shadow-sm">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold text-stone-800">
               📝 Daftar Belanja
@@ -90,7 +93,7 @@ export default function RencanaClient({ recipes }: { recipes: Recipe[] }) {
             <button
               type="button"
               onClick={handleCopy}
-              className="rounded-full bg-orange-600 px-3.5 py-1.5 text-sm font-semibold text-white active:bg-orange-700"
+              className="rounded-full bg-moss-600 px-3.5 py-1.5 text-sm font-semibold text-white active:bg-moss-700"
             >
               {copied ? "✓ Tersalin" : "📋 Salin"}
             </button>
