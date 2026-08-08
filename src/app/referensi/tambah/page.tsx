@@ -27,7 +27,7 @@ export default function TambahReferensiPage() {
             name="name"
             required
             placeholder="Misal: Tumis Kangkung Terasi"
-            className="rounded-xl border border-orange-200 bg-white px-4 py-3 text-base text-stone-800 outline-none focus:border-orange-500"
+            className="rounded-xl border border-moss-200 bg-white px-4 py-3 text-base text-stone-800 outline-none focus:border-moss-500"
           />
         </label>
 
@@ -42,7 +42,7 @@ export default function TambahReferensiPage() {
             type="url"
             name="sourceLink"
             placeholder="https://tiktok.com/..."
-            className="rounded-xl border-2 border-orange-300 bg-orange-50 px-4 py-3 text-base text-stone-800 outline-none focus:border-orange-500"
+            className="rounded-xl border-2 border-moss-300 bg-moss-50 px-4 py-3 text-base text-stone-800 outline-none focus:border-moss-500"
           />
         </label>
 
@@ -57,7 +57,7 @@ export default function TambahReferensiPage() {
             name="ingredients"
             rows={4}
             placeholder={"Kangkung\nTerasi\nCabai"}
-            className="rounded-xl border border-orange-200 bg-white px-4 py-3 text-base text-stone-800 outline-none focus:border-orange-500"
+            className="rounded-xl border border-moss-200 bg-white px-4 py-3 text-base text-stone-800 outline-none focus:border-moss-500"
           />
         </label>
 
@@ -72,13 +72,13 @@ export default function TambahReferensiPage() {
             type="text"
             name="tags"
             placeholder="sayur, cepat"
-            className="rounded-xl border border-orange-200 bg-white px-4 py-3 text-base text-stone-800 outline-none focus:border-orange-500"
+            className="rounded-xl border border-moss-200 bg-white px-4 py-3 text-base text-stone-800 outline-none focus:border-moss-500"
           />
         </label>
 
         <button
           type="submit"
-          className="mt-2 rounded-xl bg-orange-600 py-3.5 text-base font-semibold text-white shadow-sm active:bg-orange-700"
+          className="mt-2 rounded-xl bg-moss-600 py-3.5 text-base font-semibold text-white shadow-sm active:bg-moss-700"
         >
           Simpan ke Kotak Referensi
         </button>

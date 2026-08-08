@@ -22,7 +22,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="id" className={`${geistSans.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-orange-50">
+      <body className="min-h-full flex flex-col">
         <div className="flex-1 pb-24">{children}</div>
         <BottomNav />
       </body>

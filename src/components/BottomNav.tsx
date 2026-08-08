@@ -2,33 +2,39 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IconBasket, IconBook, IconHome, IconWheel } from "./icons";
 
 const items = [
-  { href: "/", label: "Beranda", icon: "🏠" },
-  { href: "/rak", label: "Rak", icon: "📚" },
-  { href: "/roda", label: "Roda", icon: "🎡" },
-  { href: "/rencana", label: "Rencana", icon: "🛒" },
+  { href: "/", label: "Beranda", Icon: IconHome },
+  { href: "/rak", label: "Rak", Icon: IconBook },
+  { href: "/roda", label: "Roda", Icon: IconWheel },
+  { href: "/rencana", label: "Rencana", Icon: IconBasket },
 ];
 
 export default function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-20 border-t border-orange-200 bg-white">
+    <nav className="fixed bottom-0 left-0 right-0 z-20 border-t border-moss-200 bg-white">
       <ul className="mx-auto flex max-w-md">
-        {items.map((item) => {
-          const active =
-            item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+        {items.map(({ href, label, Icon }) => {
+          const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
           return (
-            <li key={item.href} className="flex-1">
+            <li key={href} className="flex-1">
               <Link
-                href={item.href}
-                className={`flex flex-col items-center gap-0.5 py-3 text-xs font-medium ${
-                  active ? "text-orange-600" : "text-stone-500"
+                href={href}
+                className={`flex flex-col items-center gap-0.5 py-2.5 text-xs font-medium ${
+                  active ? "text-moss-700" : "text-stone-400"
                 }`}
               >
-                <span className="text-xl leading-none">{item.icon}</span>
-                {item.label}
+                <span
+                  className={`rounded-full p-1 ${active ? "bg-moss-100" : ""}`}
+                >
+                  <Icon
+                    className={`h-7 w-7 ${active ? "" : "opacity-60 grayscale"}`}
+                  />
+                </span>
+                {label}
               </Link>
             </li>
           );
