@@ -20,6 +20,18 @@ itu-itu saja.
 4. **Kotak Referensi** — halaman terpisah untuk mengisi bank ide resep
    cadangan, dengan field link sumber yang ditonjolkan.
 
+Tag tema di form tambah resep/referensi pakai tombol pilihan (predefined:
+chicken/ayam, fish/ikan, beef/daging sapi, food-prep, breakfast, snack,
+flour, veggie) plus opsi tambah tema manual — supaya tema yang sama tidak
+kena typo jadi dua kategori terpisah (mis. "food-prep" vs "food-prep
+friendly"). Nilai tema yang tersimpan tetap satu kanonik terlepas dari
+bahasa UI yang aktif.
+
+Bahasa Inggris jadi default UI, dengan toggle EN/ID (pojok kanan atas,
+tersimpan di cookie) untuk beralih ke Bahasa Indonesia. Bahan resep yang
+diketik pengguna sendiri tidak diterjemahkan — apa adanya sesuai bahasa yang
+dipakai saat mengisi.
+
 Yang sengaja tidak ada di versi ini: kalkulasi takaran/porsi, scraping
 otomatis dari media sosial, login multi-user, rekomendasi AI, kalender 7
 hari.

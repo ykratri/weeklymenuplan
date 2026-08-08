@@ -3,34 +3,40 @@ import { desc } from "drizzle-orm";
 import { db } from "@/db";
 import { recipes } from "@/db/schema";
 import { IconBook } from "@/components/icons";
+import { getDictionary, getLocale } from "@/lib/i18n";
+import { format } from "@/lib/i18n/format";
+import { translateTag } from "@/lib/tags";
 import { deleteRecipe } from "./actions";
 
 export const dynamic = "force-dynamic";
 
 export default async function RakPage() {
+  const locale = await getLocale();
+  const dict = getDictionary(locale);
+  const t = dict.shelf;
   const items = await db.select().from(recipes).orderBy(desc(recipes.createdAt));
 
   return (
     <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">
       <div className="flex items-center justify-between">
         <h1 className="flex items-center gap-2 text-xl font-bold text-stone-800">
-          <IconBook className="h-8 w-8" /> Rak Resep
+          <IconBook className="h-8 w-8" /> {t.title}
         </h1>
         <Link
           href="/rak/tambah"
           className="rounded-full bg-moss-600 px-4 py-2 text-sm font-semibold text-white shadow-sm active:bg-moss-700"
         >
-          + Tambah Resep
+          {t.addButton}
         </Link>
       </div>
 
       {items.length === 0 && (
         <div className="rounded-2xl border border-dashed border-moss-300 bg-white p-6 text-center text-sm text-stone-500">
-          Rak masih kosong. Tambah resep pertamamu, atau coba{" "}
+          {t.emptyPrefix}
           <Link href="/cari-ide" className="font-semibold text-moss-600">
-            Cari Ide Resep
+            {t.emptyLinkLabel}
           </Link>
-          .
+          {t.emptySuffix}
         </div>
       )}
 
@@ -48,7 +54,7 @@ export default async function RakPage() {
                 <input type="hidden" name="id" value={recipe.id} />
                 <button
                   type="submit"
-                  aria-label={`Hapus ${recipe.name}`}
+                  aria-label={format(dict.common.deleteAria, { name: recipe.name })}
                   className="shrink-0 rounded-full px-2 py-1 text-lg text-stone-400 active:text-red-600"
                 >
                   🗑️
@@ -63,7 +69,7 @@ export default async function RakPage() {
                     key={tag}
                     className="rounded-full bg-moss-100 px-2.5 py-0.5 text-xs font-medium text-moss-700"
                   >
-                    {tag}
+                    {translateTag(tag, locale)}
                   </span>
                 ))}
               </div>
@@ -71,7 +77,7 @@ export default async function RakPage() {
 
             {recipe.ingredients.length > 0 && (
               <p className="mt-2 text-sm text-stone-600">
-                <span className="font-medium">Bahan: </span>
+                <span className="font-medium">{dict.common.ingredientsLabel}</span>
                 {recipe.ingredients.join(", ")}
               </p>
             )}
@@ -83,7 +89,7 @@ export default async function RakPage() {
                 rel="noopener noreferrer"
                 className="mt-2 inline-block text-sm text-moss-600 underline"
               >
-                🔗 Lihat referensi
+                {dict.common.viewSource}
               </a>
             )}
           </div>

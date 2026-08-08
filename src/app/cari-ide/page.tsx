@@ -1,23 +1,25 @@
-import { sql } from "drizzle-orm";
-import { db } from "@/db";
-import { recipes, referenceBox } from "@/db/schema";
+import { getAllDistinctTags } from "@/db/queries";
+import { getDictionary, getLocale } from "@/lib/i18n";
+import { translateTag } from "@/lib/tags";
 import CariIdeClient from "./CariIdeClient";
 
 export const dynamic = "force-dynamic";
 
-async function getAvailableThemes(): Promise<string[]> {
-  const result = await db.execute<{ tag: string }>(sql`
-    SELECT DISTINCT tag FROM (
-      SELECT unnest(${recipes.tags}) AS tag FROM ${recipes}
-      UNION
-      SELECT unnest(${referenceBox.tags}) AS tag FROM ${referenceBox}
-    ) all_tags
-    ORDER BY tag
-  `);
-  return result.rows.map((row) => row.tag);
-}
-
 export default async function CariIdePage() {
-  const themes = await getAvailableThemes();
-  return <CariIdeClient availableThemes={themes} />;
+  const locale = await getLocale();
+  const dict = getDictionary(locale);
+  const themes = await getAllDistinctTags();
+  const themeOptions = themes.map((value) => ({
+    value,
+    label: translateTag(value, locale),
+  }));
+
+  return (
+    <CariIdeClient
+      availableThemes={themeOptions}
+      t={dict.discover}
+      common={dict.common}
+      locale={locale}
+    />
+  );
 }

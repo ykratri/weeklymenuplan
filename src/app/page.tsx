@@ -1,19 +1,21 @@
 import Link from "next/link";
 import { IconBasket, IconBook, IconBookmark, IconWheel } from "@/components/icons";
+import { getDictionary, getLocale } from "@/lib/i18n";
 
-export default function Home() {
+export default async function Home() {
+  const locale = await getLocale();
+  const t = getDictionary(locale).home;
+
   return (
     <main className="mx-auto flex max-w-md flex-col gap-5 px-4 py-8">
       <div className="text-center">
-        <h1 className="text-2xl font-bold text-stone-800">🍲 Dapur Mingguan</h1>
-        <p className="mt-1 text-sm text-stone-500">
-          Resep tersimpan, belanja tanpa mikir
-        </p>
+        <h1 className="text-2xl font-bold text-stone-800">{t.appName}</h1>
+        <p className="mt-1 text-sm text-stone-500">{t.tagline}</p>
         <Link
-          href="/panduan"
+          href="/guide"
           className="mt-2 inline-block text-sm font-semibold text-moss-700 underline"
         >
-          ❓ Cara pakai aplikasi ini
+          {t.howToUse}
         </Link>
       </div>
 
@@ -24,11 +26,9 @@ export default function Home() {
         >
           <IconBasket className="h-16 w-16" />
           <span className="text-xl font-bold text-stone-800">
-            Daftar Belanja
+            {t.shoppingTitle}
           </span>
-          <span className="text-sm text-stone-500">
-            Pilih resep untuk belanja minggu ini
-          </span>
+          <span className="text-sm text-stone-500">{t.shoppingDesc}</span>
         </Link>
 
         <Link
@@ -36,10 +36,10 @@ export default function Home() {
           className="flex flex-col items-center gap-2 rounded-3xl border border-moss-200 bg-white p-6 text-center shadow-sm active:bg-moss-50"
         >
           <IconBook className="h-16 w-16" />
-          <span className="text-xl font-bold text-stone-800">Rak Resep</span>
-          <span className="text-sm text-stone-500">
-            Lihat & tambah resep yang sudah terbukti cocok
+          <span className="text-xl font-bold text-stone-800">
+            {t.shelfTitle}
           </span>
+          <span className="text-sm text-stone-500">{t.shelfDesc}</span>
         </Link>
       </div>
 
@@ -50,7 +50,7 @@ export default function Home() {
         >
           <IconWheel className="h-10 w-10" />
           <span className="text-sm font-semibold text-stone-800">
-            Cari Ide Resep
+            {t.discoverTitle}
           </span>
         </Link>
 
@@ -60,7 +60,7 @@ export default function Home() {
         >
           <IconBookmark className="h-10 w-10" />
           <span className="text-sm font-semibold text-stone-800">
-            Kotak Referensi
+            {t.referenceTitle}
           </span>
         </Link>
       </div>

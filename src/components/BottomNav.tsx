@@ -3,16 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IconBasket, IconBook, IconHome, IconWheel } from "./icons";
+import type { Dictionary } from "@/lib/i18n/dictionary";
 
-const items = [
-  { href: "/", label: "Beranda", Icon: IconHome },
-  { href: "/daftar-belanja", label: "Belanja", Icon: IconBasket },
-  { href: "/rak", label: "Rak", Icon: IconBook },
-  { href: "/cari-ide", label: "Cari Ide", Icon: IconWheel },
-];
-
-export default function BottomNav() {
+export default function BottomNav({ nav }: { nav: Dictionary["nav"] }) {
   const pathname = usePathname();
+
+  const items = [
+    { href: "/", label: nav.home, Icon: IconHome },
+    { href: "/daftar-belanja", label: nav.shopping, Icon: IconBasket },
+    { href: "/rak", label: nav.shelf, Icon: IconBook },
+    { href: "/cari-ide", label: nav.discover, Icon: IconWheel },
+  ];
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-20 border-t border-moss-200 bg-white">

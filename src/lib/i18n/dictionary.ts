@@ -1,0 +1,106 @@
+export type Dictionary = {
+  common: {
+    ingredientsLabel: string;
+    viewSource: string;
+    deleteAria: string;
+    tagsLabel: string;
+    tagsHelp: string;
+    addManualPlaceholder: string;
+    addManualButton: string;
+    back: string;
+  };
+  nav: {
+    home: string;
+    shopping: string;
+    shelf: string;
+    discover: string;
+  };
+  home: {
+    appName: string;
+    tagline: string;
+    howToUse: string;
+    shoppingTitle: string;
+    shoppingDesc: string;
+    shelfTitle: string;
+    shelfDesc: string;
+    discoverTitle: string;
+    referenceTitle: string;
+  };
+  shelf: {
+    title: string;
+    addButton: string;
+    emptyPrefix: string;
+    emptyLinkLabel: string;
+    emptySuffix: string;
+  };
+  shelfAdd: {
+    title: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    ingredientsLabel: string;
+    ingredientsHelp: string;
+    ingredientsPlaceholder: string;
+    sourceLabel: string;
+    sourcePlaceholder: string;
+    submit: string;
+  };
+  reference: {
+    title: string;
+    addButton: string;
+    desc: string;
+    empty: string;
+  };
+  referenceAdd: {
+    title: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    sourceLabel: string;
+    sourceHelp: string;
+    sourcePlaceholder: string;
+    ingredientsLabelOptional: string;
+    ingredientsHelp: string;
+    ingredientsPlaceholder: string;
+    submit: string;
+  };
+  shopping: {
+    title: string;
+    emptyPrefix: string;
+    subtitle: string;
+    resultTitle: string;
+    copy: string;
+    copied: string;
+    noIngredients: string;
+  };
+  discover: {
+    title: string;
+    intro: string;
+    customPlaceholder: string;
+    searchButton: string;
+    themeLabel: string;
+    changeTheme: string;
+    loading: string;
+    emptyPrefix: string;
+    emptySuffix: string;
+    addToReference: string;
+    doneTitle: string;
+    addedCount: string;
+    retryTheme: string;
+    pickAnotherTheme: string;
+    saveBadge: string;
+    skipBadge: string;
+    skipAria: string;
+    saveAria: string;
+  };
+  guide: {
+    back: string;
+    title: string;
+    subtitle: string;
+    steps: {
+      title: string;
+      desc: string;
+      href: string;
+      linkLabel: string;
+    }[];
+    footer: string;
+  };
+};

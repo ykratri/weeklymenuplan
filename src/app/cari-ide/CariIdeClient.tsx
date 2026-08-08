@@ -4,6 +4,10 @@ import { useRef, useState, useTransition, type PointerEvent } from "react";
 import Link from "next/link";
 import type { ReferenceItem } from "@/db/schema";
 import { IconWheel } from "@/components/icons";
+import type { Dictionary } from "@/lib/i18n/dictionary";
+import type { Locale } from "@/lib/i18n/types";
+import { format } from "@/lib/i18n/format";
+import { translateTag } from "@/lib/tags";
 import { getThemeItems, moveToRak } from "./actions";
 
 const SWIPE_THRESHOLD = 90;
@@ -11,8 +15,14 @@ const FLY_DISTANCE = 600;
 
 export default function CariIdeClient({
   availableThemes,
+  t,
+  common,
+  locale,
 }: {
-  availableThemes: string[];
+  availableThemes: { value: string; label: string }[];
+  t: Dictionary["discover"];
+  common: Dictionary["common"];
+  locale: Locale;
 }) {
   const [theme, setTheme] = useState("");
   const [queue, setQueue] = useState<ReferenceItem[] | null>(null);
@@ -98,26 +108,23 @@ export default function CariIdeClient({
   return (
     <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">
       <h1 className="flex items-center gap-2 text-xl font-bold text-stone-800">
-        <IconWheel className="h-8 w-8" /> Cari Ide Resep
+        <IconWheel className="h-8 w-8" /> {t.title}
       </h1>
 
       {!theme && (
         <>
-          <p className="text-sm text-stone-500">
-            Pilih tema, lalu geser kartu ide resep dari Kotak Referensi —
-            geser kanan buat simpan, geser kiri buat lewati.
-          </p>
+          <p className="text-sm text-stone-500">{t.intro}</p>
 
           {availableThemes.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {availableThemes.map((t) => (
+              {availableThemes.map(({ value, label }) => (
                 <button
-                  key={t}
+                  key={value}
                   type="button"
-                  onClick={() => pickTheme(t)}
+                  onClick={() => pickTheme(value)}
                   className="rounded-full border border-moss-200 bg-white px-3.5 py-2 text-sm font-medium text-stone-700"
                 >
-                  {t}
+                  {label}
                 </button>
               ))}
             </div>
@@ -136,14 +143,14 @@ export default function CariIdeClient({
             <input
               type="text"
               name="customTheme"
-              placeholder="Atau ketik tema baru..."
+              placeholder={t.customPlaceholder}
               className="flex-1 rounded-xl border border-moss-200 bg-white px-4 py-3 text-base text-stone-800 outline-none focus:border-moss-500"
             />
             <button
               type="submit"
               className="rounded-xl bg-moss-600 px-5 py-3 text-base font-semibold text-white shadow-sm active:bg-moss-700"
             >
-              Cari
+              {t.searchButton}
             </button>
           </form>
         </>
@@ -152,32 +159,35 @@ export default function CariIdeClient({
       {theme && (
         <div className="flex items-center justify-between">
           <span className="text-sm text-stone-500">
-            Tema: <span className="font-semibold text-stone-700">{theme}</span>
+            {format(t.themeLabel, { theme: translateTag(theme, locale) })}
           </span>
           <button
             type="button"
             onClick={gantiTema}
             className="text-sm font-semibold text-moss-700 underline"
           >
-            Ganti tema
+            {t.changeTheme}
           </button>
         </div>
       )}
 
       {theme && isPending && queue === null && (
-        <p className="text-center text-sm text-stone-500">Mencari ide...</p>
+        <p className="text-center text-sm text-stone-500">{t.loading}</p>
       )}
 
       {theme && queue !== null && queue.length === 0 && (
         <div className="rounded-2xl border border-dashed border-moss-300 bg-white p-6 text-center text-sm text-stone-500">
-          Belum ada resep di Kotak Referensi untuk tema{" "}
-          <span className="font-semibold">&quot;{theme}&quot;</span>.
+          {t.emptyPrefix}
+          <span className="font-semibold">
+            &quot;{translateTag(theme, locale)}&quot;
+          </span>
+          {t.emptySuffix}
           <div className="mt-3">
             <Link
               href="/referensi/tambah"
               className="inline-block rounded-full bg-moss-600 px-4 py-2 text-sm font-semibold text-white"
             >
-              + Tambah ke Kotak Referensi
+              {t.addToReference}
             </Link>
           </div>
         </div>
@@ -185,10 +195,10 @@ export default function CariIdeClient({
 
       {theme && queue !== null && queue.length > 0 && !current && (
         <div className="rounded-2xl border border-moss-200 bg-white p-6 text-center text-sm text-stone-600">
-          🎉 Sudah dicoba semua untuk tema &quot;{theme}&quot;
+          {format(t.doneTitle, { theme: translateTag(theme, locale) })}
           {addedCount > 0 && (
             <p className="mt-1 font-semibold text-moss-700">
-              {addedCount} resep ditambahkan ke Rak!
+              {format(t.addedCount, { count: addedCount })}
             </p>
           )}
           <div className="mt-3 flex justify-center gap-2">
@@ -197,14 +207,14 @@ export default function CariIdeClient({
               onClick={() => pickTheme(theme)}
               className="rounded-full border border-moss-200 bg-white px-4 py-2 text-sm font-semibold text-stone-700"
             >
-              🔁 Ulangi tema ini
+              {t.retryTheme}
             </button>
             <button
               type="button"
               onClick={gantiTema}
               className="rounded-full bg-moss-600 px-4 py-2 text-sm font-semibold text-white"
             >
-              Pilih tema lain
+              {t.pickAnotherTheme}
             </button>
           </div>
         </div>
@@ -232,13 +242,13 @@ export default function CariIdeClient({
               className="absolute left-4 top-4 rounded-lg border-2 border-moss-600 px-2 py-1 text-sm font-bold text-moss-600"
               style={{ opacity: likeOpacity }}
             >
-              SIMPAN
+              {t.saveBadge}
             </span>
             <span
               className="absolute right-4 top-4 rounded-lg border-2 border-red-500 px-2 py-1 text-sm font-bold text-red-500"
               style={{ opacity: skipOpacity }}
             >
-              LEWATI
+              {t.skipBadge}
             </span>
 
             <h2 className="mt-8 text-xl font-bold text-stone-800">
@@ -252,7 +262,7 @@ export default function CariIdeClient({
                     key={tag}
                     className="rounded-full bg-moss-100 px-2.5 py-0.5 text-xs font-medium text-moss-700"
                   >
-                    {tag}
+                    {translateTag(tag, locale)}
                   </span>
                 ))}
               </div>
@@ -260,7 +270,7 @@ export default function CariIdeClient({
 
             {current.ingredients.length > 0 && (
               <p className="mt-3 text-sm text-stone-600">
-                <span className="font-medium">Bahan: </span>
+                <span className="font-medium">{common.ingredientsLabel}</span>
                 {current.ingredients.join(", ")}
               </p>
             )}
@@ -273,7 +283,7 @@ export default function CariIdeClient({
                 onClick={(e) => e.stopPropagation()}
                 className="mt-2 inline-block text-sm text-moss-600 underline"
               >
-                🔗 Lihat sumber
+                {common.viewSource}
               </a>
             )}
 
@@ -281,7 +291,7 @@ export default function CariIdeClient({
               <button
                 type="button"
                 onClick={() => commitSwipe("left")}
-                aria-label="Lewati"
+                aria-label={t.skipAria}
                 className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-red-200 bg-white text-2xl text-red-500 shadow-sm active:bg-red-50"
               >
                 ✕
@@ -289,7 +299,7 @@ export default function CariIdeClient({
               <button
                 type="button"
                 onClick={() => commitSwipe("right")}
-                aria-label="Simpan ke Rak"
+                aria-label={t.saveAria}
                 className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-moss-300 bg-white text-2xl shadow-sm active:bg-moss-50"
               >
                 ➕
