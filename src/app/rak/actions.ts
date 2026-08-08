@@ -29,5 +29,5 @@ export async function deleteRecipe(formData: FormData) {
   if (!id) return;
   await db.delete(recipes).where(eq(recipes.id, id));
   revalidatePath("/rak");
-  revalidatePath("/rencana");
+  revalidatePath("/daftar-belanja");
 }

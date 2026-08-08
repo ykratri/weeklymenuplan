@@ -1,22 +1,36 @@
-# 🍲 Rak Resep
+# 🍲 Dapur Mingguan
 
 Aplikasi rencana menu mingguan untuk ibu rumah tangga yang memasak setiap
-hari. "Rak" permanen untuk resep yang sudah terbukti cocok, plus cara cepat
-menemukan ide baru saat rak terasa itu-itu saja.
+hari. Resep tersimpan, belanja tanpa mikir — "rak" permanen untuk resep yang
+sudah terbukti cocok, plus cara cepat menemukan ide baru saat rak terasa
+itu-itu saja.
 
 ## Fitur (MVP)
 
-1. **Rak Resep** — tambah/lihat/hapus resep (nama, bahan, tag tema, link
+1. **Daftar Belanja** — pilih beberapa resep dari Rak, sistem menggabungkan
+   semua nama bahan (dedupe, tanpa takaran) jadi satu daftar belanja yang
+   bisa disalin sebagai teks. Ini fitur utama aplikasi.
+2. **Rak Resep** — tambah/lihat/hapus resep (nama, bahan, tag tema, link
    referensi opsional).
-2. **Roda Putar Tematik** — pilih tema, sistem mengambil satu resep acak dari
-   **Kotak Referensi** (diisi manual oleh pengguna, biasanya dari link
-   TikTok/YouTube/artikel) yang cocok dengan tema tsb. Jika dipilih, resep
-   pindah (dihapus dari Kotak Referensi) ke Rak Resep.
-3. **Kotak Referensi** — halaman terpisah untuk mengisi bank ide resep
+3. **Cari Ide Resep** — pilih tema, lalu geser kartu (swipe, ala dating app)
+   ide resep dari **Kotak Referensi** (diisi manual oleh pengguna, biasanya
+   dari link TikTok/YouTube/artikel) yang cocok dengan tema tsb. Geser
+   kanan/tekan ➕ untuk simpan — resep pindah (dihapus dari Kotak Referensi)
+   ke Rak Resep. Geser kiri/tekan ✕ untuk lewati.
+4. **Kotak Referensi** — halaman terpisah untuk mengisi bank ide resep
    cadangan, dengan field link sumber yang ditonjolkan.
-4. **Rencana Mingguan & Daftar Belanja** — pilih beberapa resep dari Rak,
-   sistem menggabungkan semua nama bahan (dedupe, tanpa takaran) jadi satu
-   daftar belanja yang bisa disalin sebagai teks.
+
+Tag tema di form tambah resep/referensi pakai tombol pilihan (predefined:
+chicken/ayam, fish/ikan, beef/daging sapi, food-prep, breakfast, snack,
+flour, veggie) plus opsi tambah tema manual — supaya tema yang sama tidak
+kena typo jadi dua kategori terpisah (mis. "food-prep" vs "food-prep
+friendly"). Nilai tema yang tersimpan tetap satu kanonik terlepas dari
+bahasa UI yang aktif.
+
+Bahasa Inggris jadi default UI, dengan toggle EN/ID (pojok kanan atas,
+tersimpan di cookie) untuk beralih ke Bahasa Indonesia. Bahan resep yang
+diketik pengguna sendiri tidak diterjemahkan — apa adanya sesuai bahasa yang
+dipakai saat mengisi.
 
 Yang sengaja tidak ada di versi ini: kalkulasi takaran/porsi, scraping
 otomatis dari media sosial, login multi-user, rekomendasi AI, kalender 7
@@ -35,8 +49,8 @@ recipes (Rak Resep)        reference_box (Kotak Referensi)
 ```
 
 Kedua tabel punya bentuk yang sama — bedanya cuma tabel tempat data itu
-hidup. "Pindah ke Rak" dari Roda Putar = insert ke `recipes` + delete dari
-`reference_box` dalam satu transaksi.
+hidup. "Pindah ke Rak" dari Cari Ide Resep = insert ke `recipes` + delete
+dari `reference_box` dalam satu transaksi.
 
 ## Tumpukan teknis
 

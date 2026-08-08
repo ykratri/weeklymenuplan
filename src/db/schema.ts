@@ -10,7 +10,7 @@ export const recipes = pgTable("recipes", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-// Kotak Referensi — bank resep cadangan untuk Roda Putar Tematik, diisi manual.
+// Kotak Referensi — bank resep cadangan untuk Cari Ide Resep, diisi manual.
 export const referenceBox = pgTable("reference_box", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),

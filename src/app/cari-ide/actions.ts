@@ -5,23 +5,17 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/db";
 import { recipes, referenceBox, type ReferenceItem } from "@/db/schema";
 
-export async function spinTheme(
-  theme: string,
-): Promise<{ item: ReferenceItem | null }> {
+export async function getThemeItems(theme: string): Promise<ReferenceItem[]> {
   const normalized = theme.trim().toLowerCase();
-  if (!normalized) return { item: null };
+  if (!normalized) return [];
 
-  const candidates = await db
+  return db
     .select()
     .from(referenceBox)
     .where(sql`EXISTS (
       SELECT 1 FROM unnest(${referenceBox.tags}) t WHERE lower(t) = ${normalized}
-    )`);
-
-  if (candidates.length === 0) return { item: null };
-
-  const picked = candidates[Math.floor(Math.random() * candidates.length)];
-  return { item: picked };
+    )`)
+    .orderBy(sql`random()`);
 }
 
 export async function moveToRak(
@@ -46,6 +40,6 @@ export async function moveToRak(
 
   revalidatePath("/rak");
   revalidatePath("/referensi");
-  revalidatePath("/roda");
+  revalidatePath("/cari-ide");
   return { ok: true };
 }

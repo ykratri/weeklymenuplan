@@ -3,11 +3,17 @@ import { desc } from "drizzle-orm";
 import { db } from "@/db";
 import { referenceBox } from "@/db/schema";
 import { IconBookmark } from "@/components/icons";
+import { getDictionary, getLocale } from "@/lib/i18n";
+import { format } from "@/lib/i18n/format";
+import { translateTag } from "@/lib/tags";
 import { deleteReferenceItem } from "./actions";
 
 export const dynamic = "force-dynamic";
 
 export default async function ReferensiPage() {
+  const locale = await getLocale();
+  const dict = getDictionary(locale);
+  const t = dict.reference;
   const items = await db
     .select()
     .from(referenceBox)
@@ -17,24 +23,20 @@ export default async function ReferensiPage() {
     <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">
       <div className="flex items-center justify-between">
         <h1 className="flex items-center gap-2 text-xl font-bold text-stone-800">
-          <IconBookmark className="h-8 w-8" /> Kotak Referensi
+          <IconBookmark className="h-8 w-8" /> {t.title}
         </h1>
         <Link
           href="/referensi/tambah"
           className="rounded-full bg-moss-600 px-4 py-2 text-sm font-semibold text-white shadow-sm active:bg-moss-700"
         >
-          + Tambah
+          {t.addButton}
         </Link>
       </div>
-      <p className="text-sm text-stone-500">
-        Kotak cadangan ide resep (dari TikTok/YouTube/artikel) yang belum ada
-        di rakmu. Dipakai oleh Roda Putar Tematik.
-      </p>
+      <p className="text-sm text-stone-500">{t.desc}</p>
 
       {items.length === 0 && (
         <div className="rounded-2xl border border-dashed border-moss-300 bg-white p-6 text-center text-sm text-stone-500">
-          Kotak referensi masih kosong. Tambahkan ide resep dari TikTok,
-          YouTube, atau artikel yang belum sempat kamu coba.
+          {t.empty}
         </div>
       )}
 
@@ -52,7 +54,7 @@ export default async function ReferensiPage() {
                 <input type="hidden" name="id" value={item.id} />
                 <button
                   type="submit"
-                  aria-label={`Hapus ${item.name}`}
+                  aria-label={format(dict.common.deleteAria, { name: item.name })}
                   className="shrink-0 rounded-full px-2 py-1 text-lg text-stone-400 active:text-red-600"
                 >
                   🗑️
@@ -67,7 +69,7 @@ export default async function ReferensiPage() {
                     key={tag}
                     className="rounded-full bg-moss-100 px-2.5 py-0.5 text-xs font-medium text-moss-700"
                   >
-                    {tag}
+                    {translateTag(tag, locale)}
                   </span>
                 ))}
               </div>
@@ -75,7 +77,7 @@ export default async function ReferensiPage() {
 
             {item.ingredients.length > 0 && (
               <p className="mt-2 text-sm text-stone-600">
-                <span className="font-medium">Bahan: </span>
+                <span className="font-medium">{dict.common.ingredientsLabel}</span>
                 {item.ingredients.join(", ")}
               </p>
             )}
@@ -87,7 +89,7 @@ export default async function ReferensiPage() {
                 rel="noopener noreferrer"
                 className="mt-2 inline-block text-sm text-moss-600 underline"
               >
-                🔗 Lihat sumber
+                {dict.common.viewSource}
               </a>
             )}
           </div>

@@ -3,8 +3,15 @@
 import { useMemo, useState } from "react";
 import type { Recipe } from "@/db/schema";
 import { IconBasket } from "@/components/icons";
+import type { Dictionary } from "@/lib/i18n/dictionary";
 
-export default function RencanaClient({ recipes }: { recipes: Recipe[] }) {
+export default function DaftarBelanjaClient({
+  recipes,
+  t,
+}: {
+  recipes: Recipe[];
+  t: Dictionary["shopping"];
+}) {
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const [copied, setCopied] = useState(false);
 
@@ -45,11 +52,9 @@ export default function RencanaClient({ recipes }: { recipes: Recipe[] }) {
   return (
     <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">
       <h1 className="flex items-center gap-2 text-xl font-bold text-stone-800">
-        <IconBasket className="h-8 w-8" /> Rencana Mingguan
+        <IconBasket className="h-8 w-8" /> {t.title}
       </h1>
-      <p className="text-sm text-stone-500">
-        Pilih resep untuk minggu ini, daftar belanja dibuat otomatis.
-      </p>
+      <p className="text-sm text-stone-500">{t.subtitle}</p>
 
       <div className="flex flex-col gap-2">
         {recipes.map((recipe) => {
@@ -88,21 +93,19 @@ export default function RencanaClient({ recipes }: { recipes: Recipe[] }) {
         <div className="rounded-2xl border border-moss-200 bg-white p-4 shadow-sm">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold text-stone-800">
-              📝 Daftar Belanja
+              {t.resultTitle}
             </h2>
             <button
               type="button"
               onClick={handleCopy}
               className="rounded-full bg-moss-600 px-3.5 py-1.5 text-sm font-semibold text-white active:bg-moss-700"
             >
-              {copied ? "✓ Tersalin" : "📋 Salin"}
+              {copied ? t.copied : t.copy}
             </button>
           </div>
 
           {shoppingList.length === 0 ? (
-            <p className="mt-3 text-sm text-stone-500">
-              Resep terpilih belum punya daftar bahan.
-            </p>
+            <p className="mt-3 text-sm text-stone-500">{t.noIngredients}</p>
           ) : (
             <ul className="mt-3 flex flex-col gap-1.5">
               {shoppingList.map((item) => (
