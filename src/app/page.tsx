@@ -27,7 +27,7 @@ export default function Home() {
             Daftar Belanja
           </span>
           <span className="text-sm text-stone-500">
-            Pilih resep minggu ini, bahannya otomatis digabung
+            Pilih resep untuk belanja minggu ini
           </span>
         </Link>
 
