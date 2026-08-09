@@ -14,6 +14,7 @@ export const id: Dictionary = {
     addManualButton: "+ Tambah",
     back: "Kembali",
     backToHome: "← Kembali ke Beranda",
+    noSearchResults: 'Tidak ada hasil untuk "{query}"',
   },
   nav: {
     home: "Beranda",
@@ -35,6 +36,7 @@ export const id: Dictionary = {
   shelf: {
     title: "Rak Resep",
     addButton: "+ Tambah Resep",
+    searchPlaceholder: "🔍 Cari resep...",
     emptyPrefix: "Rak masih kosong. Tambah resep pertamamu, atau coba ",
     emptyLinkLabel: "Cari Ide Resep",
     emptySuffix: ".",
@@ -57,6 +59,7 @@ export const id: Dictionary = {
   reference: {
     title: "Kotak Referensi",
     addButton: "+ Tambah",
+    searchPlaceholder: "🔍 Cari di kotak referensi...",
     desc: "Kotak cadangan ide resep (dari TikTok/YouTube/artikel) yang belum ada di rakmu. Dipakai oleh Cari Ide Resep.",
     empty: "Kotak referensi masih kosong. Tambahkan ide resep dari TikTok, YouTube, atau artikel yang belum sempat kamu coba.",
   },

@@ -12,6 +12,7 @@ export type Dictionary = {
     addManualButton: string;
     back: string;
     backToHome: string;
+    noSearchResults: string;
   };
   nav: {
     home: string;
@@ -33,6 +34,7 @@ export type Dictionary = {
   shelf: {
     title: string;
     addButton: string;
+    searchPlaceholder: string;
     emptyPrefix: string;
     emptyLinkLabel: string;
     emptySuffix: string;
@@ -55,6 +57,7 @@ export type Dictionary = {
   reference: {
     title: string;
     addButton: string;
+    searchPlaceholder: string;
     desc: string;
     empty: string;
   };

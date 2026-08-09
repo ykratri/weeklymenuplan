@@ -14,6 +14,7 @@ export const en: Dictionary = {
     addManualButton: "+ Add",
     back: "Back",
     backToHome: "← Back to Home",
+    noSearchResults: 'No results for "{query}"',
   },
   nav: {
     home: "Home",
@@ -35,6 +36,7 @@ export const en: Dictionary = {
   shelf: {
     title: "Recipe Shelf",
     addButton: "+ Add Recipe",
+    searchPlaceholder: "🔍 Search recipes...",
     emptyPrefix: "Your shelf is empty. Add your first recipe, or try ",
     emptyLinkLabel: "Discover Recipes",
     emptySuffix: ".",
@@ -57,6 +59,7 @@ export const en: Dictionary = {
   reference: {
     title: "Reference Box",
     addButton: "+ Add",
+    searchPlaceholder: "🔍 Search reference box...",
     desc: "A backup box for recipe ideas (from TikTok/YouTube/articles) that aren't on your shelf yet. Used by Discover Recipes.",
     empty: "Your reference box is empty. Add recipe ideas from TikTok, YouTube, or articles you haven't tried yet.",
   },
