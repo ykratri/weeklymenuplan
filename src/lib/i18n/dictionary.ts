@@ -3,6 +3,9 @@ export type Dictionary = {
     ingredientsLabel: string;
     viewSource: string;
     deleteAria: string;
+    editAria: string;
+    editButton: string;
+    confirmDelete: string;
     tagsLabel: string;
     tagsHelp: string;
     addManualPlaceholder: string;
@@ -45,6 +48,10 @@ export type Dictionary = {
     sourcePlaceholder: string;
     submit: string;
   };
+  shelfEdit: {
+    title: string;
+    submit: string;
+  };
   reference: {
     title: string;
     addButton: string;
@@ -61,6 +68,10 @@ export type Dictionary = {
     ingredientsLabelOptional: string;
     ingredientsHelp: string;
     ingredientsPlaceholder: string;
+    submit: string;
+  };
+  referenceEdit: {
+    title: string;
     submit: string;
   };
   shopping: {

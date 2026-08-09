@@ -5,6 +5,9 @@ export const id: Dictionary = {
     ingredientsLabel: "Bahan: ",
     viewSource: "🔗 Lihat sumber",
     deleteAria: "Hapus {name}",
+    editAria: "Edit {name}",
+    editButton: "✏️ Edit",
+    confirmDelete: 'Hapus "{name}"? Tindakan ini tidak bisa dibatalkan.',
     tagsLabel: "Tag tema",
     tagsHelp: "Pilih dari yang sudah ada, atau tambah tema baru manual",
     addManualPlaceholder: "Tema lain (manual)...",
@@ -47,6 +50,10 @@ export const id: Dictionary = {
     sourcePlaceholder: "https://tiktok.com/...",
     submit: "Simpan ke Rak",
   },
+  shelfEdit: {
+    title: "Edit Resep",
+    submit: "Simpan Perubahan",
+  },
   reference: {
     title: "Kotak Referensi",
     addButton: "+ Tambah",
@@ -64,6 +71,10 @@ export const id: Dictionary = {
     ingredientsHelp: "Satu bahan per baris, tanpa takaran",
     ingredientsPlaceholder: "Kangkung\nTerasi\nCabai",
     submit: "Simpan ke Kotak Referensi",
+  },
+  referenceEdit: {
+    title: "Edit Referensi",
+    submit: "Simpan Perubahan",
   },
   shopping: {
     title: "Daftar Belanja",

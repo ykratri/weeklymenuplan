@@ -7,6 +7,7 @@ import { getDictionary, getLocale } from "@/lib/i18n";
 import { format } from "@/lib/i18n/format";
 import { translateTag } from "@/lib/tags";
 import BackLink from "@/components/BackLink";
+import DeleteButton from "@/components/DeleteButton";
 import { deleteRecipe } from "./actions";
 
 export const dynamic = "force-dynamic";
@@ -52,16 +53,21 @@ export default async function RakPage() {
               <h2 className="text-lg font-semibold text-stone-800">
                 {recipe.name}
               </h2>
-              <form action={deleteRecipe}>
-                <input type="hidden" name="id" value={recipe.id} />
-                <button
-                  type="submit"
-                  aria-label={format(dict.common.deleteAria, { name: recipe.name })}
-                  className="shrink-0 rounded-full px-2 py-1 text-lg text-stone-400 active:text-red-600"
+              <div className="flex shrink-0 items-center gap-1">
+                <Link
+                  href={`/rak/${recipe.id}/edit`}
+                  aria-label={format(dict.common.editAria, { name: recipe.name })}
+                  className="rounded-full px-2 py-1 text-sm font-medium text-moss-600"
                 >
-                  🗑️
-                </button>
-              </form>
+                  {dict.common.editButton}
+                </Link>
+                <DeleteButton
+                  action={deleteRecipe}
+                  id={recipe.id}
+                  ariaLabel={format(dict.common.deleteAria, { name: recipe.name })}
+                  confirmMessage={format(dict.common.confirmDelete, { name: recipe.name })}
+                />
+              </div>
             </div>
 
             {recipe.tags.length > 0 && (

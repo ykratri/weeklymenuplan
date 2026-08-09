@@ -31,3 +31,25 @@ export async function deleteRecipe(formData: FormData) {
   revalidatePath("/rak");
   revalidatePath("/daftar-belanja");
 }
+
+export async function updateRecipe(formData: FormData) {
+  const id = Number(formData.get("id"));
+  const name = String(formData.get("name") ?? "").trim();
+  if (!id || !name) {
+    throw new Error("Nama resep wajib diisi");
+  }
+
+  await db
+    .update(recipes)
+    .set({
+      name,
+      ingredients: parseLines(formData.get("ingredients")),
+      sourceLink: String(formData.get("sourceLink") ?? "").trim() || null,
+      tags: parseTags(formData.get("tags")),
+    })
+    .where(eq(recipes.id, id));
+
+  revalidatePath("/rak");
+  revalidatePath("/daftar-belanja");
+  redirect("/rak");
+}

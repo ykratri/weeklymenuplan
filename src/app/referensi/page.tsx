@@ -7,6 +7,7 @@ import { getDictionary, getLocale } from "@/lib/i18n";
 import { format } from "@/lib/i18n/format";
 import { translateTag } from "@/lib/tags";
 import BackLink from "@/components/BackLink";
+import DeleteButton from "@/components/DeleteButton";
 import { deleteReferenceItem } from "./actions";
 
 export const dynamic = "force-dynamic";
@@ -52,16 +53,21 @@ export default async function ReferensiPage() {
               <h2 className="text-lg font-semibold text-stone-800">
                 {item.name}
               </h2>
-              <form action={deleteReferenceItem}>
-                <input type="hidden" name="id" value={item.id} />
-                <button
-                  type="submit"
-                  aria-label={format(dict.common.deleteAria, { name: item.name })}
-                  className="shrink-0 rounded-full px-2 py-1 text-lg text-stone-400 active:text-red-600"
+              <div className="flex shrink-0 items-center gap-1">
+                <Link
+                  href={`/referensi/${item.id}/edit`}
+                  aria-label={format(dict.common.editAria, { name: item.name })}
+                  className="rounded-full px-2 py-1 text-sm font-medium text-moss-600"
                 >
-                  🗑️
-                </button>
-              </form>
+                  {dict.common.editButton}
+                </Link>
+                <DeleteButton
+                  action={deleteReferenceItem}
+                  id={item.id}
+                  ariaLabel={format(dict.common.deleteAria, { name: item.name })}
+                  confirmMessage={format(dict.common.confirmDelete, { name: item.name })}
+                />
+              </div>
             </div>
 
             {item.tags.length > 0 && (

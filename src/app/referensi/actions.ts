@@ -32,3 +32,25 @@ export async function deleteReferenceItem(formData: FormData) {
   revalidatePath("/referensi");
   revalidatePath("/cari-ide");
 }
+
+export async function updateReferenceItem(formData: FormData) {
+  const id = Number(formData.get("id"));
+  const name = String(formData.get("name") ?? "").trim();
+  if (!id || !name) {
+    throw new Error("Nama resep wajib diisi");
+  }
+
+  await db
+    .update(referenceBox)
+    .set({
+      name,
+      ingredients: parseLines(formData.get("ingredients")),
+      sourceLink: String(formData.get("sourceLink") ?? "").trim() || null,
+      tags: parseTags(formData.get("tags")),
+    })
+    .where(eq(referenceBox.id, id));
+
+  revalidatePath("/referensi");
+  revalidatePath("/cari-ide");
+  redirect("/referensi");
+}

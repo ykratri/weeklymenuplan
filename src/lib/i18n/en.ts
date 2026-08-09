@@ -5,6 +5,9 @@ export const en: Dictionary = {
     ingredientsLabel: "Ingredients: ",
     viewSource: "🔗 View source",
     deleteAria: "Delete {name}",
+    editAria: "Edit {name}",
+    editButton: "✏️ Edit",
+    confirmDelete: 'Delete "{name}"? This can\'t be undone.',
     tagsLabel: "Theme tags",
     tagsHelp: "Pick from existing tags, or add a new one manually",
     addManualPlaceholder: "Add a theme manually...",
@@ -47,6 +50,10 @@ export const en: Dictionary = {
     sourcePlaceholder: "https://tiktok.com/...",
     submit: "Save to Shelf",
   },
+  shelfEdit: {
+    title: "Edit Recipe",
+    submit: "Save Changes",
+  },
   reference: {
     title: "Reference Box",
     addButton: "+ Add",
@@ -64,6 +71,10 @@ export const en: Dictionary = {
     ingredientsHelp: "One ingredient per line, no exact measurements",
     ingredientsPlaceholder: "Greens\nShrimp paste\nChili",
     submit: "Save to Reference Box",
+  },
+  referenceEdit: {
+    title: "Edit Reference",
+    submit: "Save Changes",
   },
   shopping: {
     title: "Shopping List",
