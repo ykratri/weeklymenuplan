@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { db } from "@/db";
 import { recipes } from "@/db/schema";
 import { getExtraThemes } from "@/db/queries";
 import { PREDEFINED_TAGS } from "@/lib/tags";
 import { getDictionary, getLocale } from "@/lib/i18n";
+import { requireUser } from "@/lib/supabase/auth";
 import TagPicker from "@/components/TagPicker";
 import { updateRecipe } from "../../actions";
 
@@ -17,6 +18,7 @@ export default async function EditResepPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const user = await requireUser();
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const t = dict.shelfAdd;
@@ -24,11 +26,11 @@ export default async function EditResepPage({
   const [recipe] = await db
     .select()
     .from(recipes)
-    .where(eq(recipes.id, Number(id)));
+    .where(and(eq(recipes.id, Number(id)), eq(recipes.userId, user.id)));
 
   if (!recipe) notFound();
 
-  const extraThemes = await getExtraThemes();
+  const extraThemes = await getExtraThemes(user.id);
   const predefined = PREDEFINED_TAGS.map((tag) => ({
     value: tag.value,
     label: tag[locale],

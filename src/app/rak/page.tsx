@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { recipes } from "@/db/schema";
 import { IconBook } from "@/components/icons";
 import { getDictionary, getLocale } from "@/lib/i18n";
+import { requireUser } from "@/lib/supabase/auth";
 import BackLink from "@/components/BackLink";
 import RakListClient from "./RakListClient";
 import { deleteRecipe } from "./actions";
@@ -11,10 +12,15 @@ import { deleteRecipe } from "./actions";
 export const dynamic = "force-dynamic";
 
 export default async function RakPage() {
+  const user = await requireUser();
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const t = dict.shelf;
-  const items = await db.select().from(recipes).orderBy(desc(recipes.createdAt));
+  const items = await db
+    .select()
+    .from(recipes)
+    .where(eq(recipes.userId, user.id))
+    .orderBy(desc(recipes.createdAt));
 
   return (
     <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">

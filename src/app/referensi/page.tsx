@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { referenceBox } from "@/db/schema";
 import { IconBookmark } from "@/components/icons";
 import { getDictionary, getLocale } from "@/lib/i18n";
+import { requireUser } from "@/lib/supabase/auth";
 import BackLink from "@/components/BackLink";
 import ReferensiListClient from "./ReferensiListClient";
 import { deleteReferenceItem } from "./actions";
@@ -11,12 +12,14 @@ import { deleteReferenceItem } from "./actions";
 export const dynamic = "force-dynamic";
 
 export default async function ReferensiPage() {
+  const user = await requireUser();
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const t = dict.reference;
   const items = await db
     .select()
     .from(referenceBox)
+    .where(eq(referenceBox.userId, user.id))
     .orderBy(desc(referenceBox.createdAt));
 
   return (

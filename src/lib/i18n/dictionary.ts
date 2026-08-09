@@ -107,6 +107,22 @@ export type Dictionary = {
     skipBadge: string;
     swipeHint: string;
   };
+  auth: {
+    emailLabel: string;
+    passwordLabel: string;
+    loginTitle: string;
+    loginSubtitle: string;
+    signInButton: string;
+    noAccountPrefix: string;
+    signUpLink: string;
+    signupTitle: string;
+    signupSubtitle: string;
+    signUpButton: string;
+    haveAccountPrefix: string;
+    signInLink: string;
+    signOutButton: string;
+    confirmEmailNotice: string;
+  };
   guide: {
     title: string;
     subtitle: string;

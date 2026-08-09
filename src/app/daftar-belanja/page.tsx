@@ -1,19 +1,25 @@
 import Link from "next/link";
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { recipes } from "@/db/schema";
 import { IconBasket } from "@/components/icons";
 import { getDictionary, getLocale } from "@/lib/i18n";
+import { requireUser } from "@/lib/supabase/auth";
 import BackLink from "@/components/BackLink";
 import DaftarBelanjaClient from "./DaftarBelanjaClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function DaftarBelanjaPage() {
+  const user = await requireUser();
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const t = dict.shopping;
-  const items = await db.select().from(recipes).orderBy(desc(recipes.createdAt));
+  const items = await db
+    .select()
+    .from(recipes)
+    .where(eq(recipes.userId, user.id))
+    .orderBy(desc(recipes.createdAt));
 
   if (items.length === 0) {
     return (

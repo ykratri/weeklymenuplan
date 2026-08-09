@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { db } from "@/db";
 import { referenceBox } from "@/db/schema";
 import { getExtraThemes } from "@/db/queries";
 import { PREDEFINED_TAGS } from "@/lib/tags";
 import { getDictionary, getLocale } from "@/lib/i18n";
+import { requireUser } from "@/lib/supabase/auth";
 import TagPicker from "@/components/TagPicker";
 import { updateReferenceItem } from "../../actions";
 
@@ -17,6 +18,7 @@ export default async function EditReferensiPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const user = await requireUser();
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const t = dict.referenceAdd;
@@ -24,11 +26,11 @@ export default async function EditReferensiPage({
   const [item] = await db
     .select()
     .from(referenceBox)
-    .where(eq(referenceBox.id, Number(id)));
+    .where(and(eq(referenceBox.id, Number(id)), eq(referenceBox.userId, user.id)));
 
   if (!item) notFound();
 
-  const extraThemes = await getExtraThemes();
+  const extraThemes = await getExtraThemes(user.id);
   const predefined = PREDEFINED_TAGS.map((tag) => ({
     value: tag.value,
     label: tag[locale],

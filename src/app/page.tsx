@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { IconBasket, IconBook, IconBookmark, IconWheel } from "@/components/icons";
 import { getDictionary, getLocale } from "@/lib/i18n";
+import { signOut } from "@/app/signout/actions";
 
 export default async function Home() {
   const locale = await getLocale();
-  const t = getDictionary(locale).home;
+  const dict = getDictionary(locale);
+  const t = dict.home;
 
   return (
     <main className="mx-auto flex max-w-md flex-col gap-5 px-4 py-8">
@@ -65,6 +67,12 @@ export default async function Home() {
       >
         {t.howToUse}
       </Link>
+
+      <form action={signOut} className="text-center">
+        <button type="submit" className="text-sm text-stone-400 underline">
+          {dict.auth.signOutButton}
+        </button>
+      </form>
     </main>
   );
 }

@@ -5,8 +5,12 @@ import { usePathname } from "next/navigation";
 import { IconBasket, IconBook, IconHome, IconWheel } from "./icons";
 import type { Dictionary } from "@/lib/i18n/dictionary";
 
+const HIDDEN_PATHS = ["/login", "/signup"];
+
 export default function BottomNav({ nav }: { nav: Dictionary["nav"] }) {
   const pathname = usePathname();
+
+  if (HIDDEN_PATHS.some((path) => pathname.startsWith(path))) return null;
 
   const items = [
     { href: "/", label: nav.home, Icon: IconHome },
