@@ -11,12 +11,6 @@ export default async function Home() {
       <div className="text-center">
         <h1 className="text-2xl font-bold text-stone-800">{t.appName}</h1>
         <p className="mt-1 text-sm text-stone-500">{t.tagline}</p>
-        <Link
-          href="/guide"
-          className="mt-2 inline-block text-sm font-semibold text-moss-700 underline"
-        >
-          {t.howToUse}
-        </Link>
       </div>
 
       <div className="flex flex-col gap-4">
@@ -64,6 +58,13 @@ export default async function Home() {
           </span>
         </Link>
       </div>
+
+      <Link
+        href="/guide"
+        className="text-center text-sm font-semibold text-moss-700 underline"
+      >
+        {t.howToUse}
+      </Link>
     </main>
   );
 }

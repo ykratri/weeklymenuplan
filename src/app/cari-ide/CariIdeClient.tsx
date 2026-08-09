@@ -4,6 +4,7 @@ import { useRef, useState, useTransition, type PointerEvent } from "react";
 import Link from "next/link";
 import type { ReferenceItem } from "@/db/schema";
 import { IconWheel } from "@/components/icons";
+import BackLink from "@/components/BackLink";
 import type { Dictionary } from "@/lib/i18n/dictionary";
 import type { Locale } from "@/lib/i18n/types";
 import { format } from "@/lib/i18n/format";
@@ -107,6 +108,7 @@ export default function CariIdeClient({
 
   return (
     <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">
+      <BackLink label={common.backToHome} />
       <h1 className="flex items-center gap-2 text-xl font-bold text-stone-800">
         <IconWheel className="h-8 w-8" /> {t.title}
       </h1>
@@ -114,6 +116,12 @@ export default function CariIdeClient({
       {!theme && (
         <>
           <p className="text-sm text-stone-500">{t.intro}</p>
+          <Link
+            href="/referensi"
+            className="-mt-2 text-sm font-semibold text-moss-700 underline"
+          >
+            {t.manageReference}
+          </Link>
 
           {availableThemes.length > 0 && (
             <div className="flex flex-wrap gap-2">

@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { recipes } from "@/db/schema";
 import { IconBasket } from "@/components/icons";
 import { getDictionary, getLocale } from "@/lib/i18n";
+import BackLink from "@/components/BackLink";
 import DaftarBelanjaClient from "./DaftarBelanjaClient";
 
 export const dynamic = "force-dynamic";
@@ -17,6 +18,7 @@ export default async function DaftarBelanjaPage() {
   if (items.length === 0) {
     return (
       <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">
+        <BackLink label={dict.common.backToHome} />
         <h1 className="flex items-center gap-2 text-xl font-bold text-stone-800">
           <IconBasket className="h-8 w-8" /> {t.title}
         </h1>
@@ -35,5 +37,11 @@ export default async function DaftarBelanjaPage() {
     );
   }
 
-  return <DaftarBelanjaClient recipes={items} t={t} />;
+  return (
+    <DaftarBelanjaClient
+      recipes={items}
+      t={t}
+      backToHome={dict.common.backToHome}
+    />
+  );
 }

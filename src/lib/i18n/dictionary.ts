@@ -8,6 +8,7 @@ export type Dictionary = {
     addManualPlaceholder: string;
     addManualButton: string;
     back: string;
+    backToHome: string;
   };
   nav: {
     home: string;
@@ -66,6 +67,7 @@ export type Dictionary = {
     title: string;
     emptyPrefix: string;
     subtitle: string;
+    pickPrompt: string;
     resultTitle: string;
     copy: string;
     copied: string;
@@ -74,6 +76,7 @@ export type Dictionary = {
   discover: {
     title: string;
     intro: string;
+    manageReference: string;
     customPlaceholder: string;
     searchButton: string;
     themeLabel: string;
@@ -92,7 +95,6 @@ export type Dictionary = {
     saveAria: string;
   };
   guide: {
-    back: string;
     title: string;
     subtitle: string;
     steps: {

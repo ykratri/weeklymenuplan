@@ -10,6 +10,7 @@ export const id: Dictionary = {
     addManualPlaceholder: "Tema lain (manual)...",
     addManualButton: "+ Tambah",
     back: "Kembali",
+    backToHome: "← Kembali ke Beranda",
   },
   nav: {
     home: "Beranda",
@@ -19,7 +20,7 @@ export const id: Dictionary = {
   },
   home: {
     appName: "🍲 Dapur Mingguan",
-    tagline: "Resep tersimpan, belanja tanpa mikir",
+    tagline: "Simpan resep favoritmu sekali, dan belanja mingguan jadi tanpa mikir.",
     howToUse: "❓ Cara pakai aplikasi ini",
     shoppingTitle: "Daftar Belanja",
     shoppingDesc: "Pilih resep untuk belanja minggu ini",
@@ -68,6 +69,7 @@ export const id: Dictionary = {
     title: "Daftar Belanja",
     emptyPrefix: "Rak resep masih kosong. Tambah resep dulu sebelum membuat daftar belanja.",
     subtitle: "Pilih resep yang mau dimasak minggu ini, bahannya otomatis digabung jadi daftar belanja.",
+    pickPrompt: "👆 Pilih resep di atas untuk membuat daftar belanja",
     resultTitle: "🧾 Bahan yang perlu dibeli",
     copy: "📋 Salin",
     copied: "✓ Tersalin",
@@ -76,6 +78,7 @@ export const id: Dictionary = {
   discover: {
     title: "Cari Ide Resep",
     intro: "Pilih tema, lalu geser kartu ide resep dari Kotak Referensi — geser kanan buat simpan, geser kiri buat lewati.",
+    manageReference: "Kelola Kotak Referensi →",
     customPlaceholder: "Atau ketik tema baru...",
     searchButton: "Cari",
     themeLabel: "Tema: {theme}",
@@ -94,9 +97,8 @@ export const id: Dictionary = {
     saveAria: "Simpan ke Rak",
   },
   guide: {
-    back: "← Kembali ke Beranda",
     title: "Cara Pakai Dapur Mingguan",
-    subtitle: "4 langkah sederhana, tidak perlu dihafal — tinggal ikuti urutannya.",
+    subtitle: "4 langkah sederhana, tidak perlu dihafal.",
     steps: [
       {
         title: "1. Isi Rak Resep",

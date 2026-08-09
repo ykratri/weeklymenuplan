@@ -6,6 +6,7 @@ import { IconBookmark } from "@/components/icons";
 import { getDictionary, getLocale } from "@/lib/i18n";
 import { format } from "@/lib/i18n/format";
 import { translateTag } from "@/lib/tags";
+import BackLink from "@/components/BackLink";
 import { deleteReferenceItem } from "./actions";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +22,7 @@ export default async function ReferensiPage() {
 
   return (
     <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">
+      <BackLink label={dict.common.backToHome} />
       <div className="flex items-center justify-between">
         <h1 className="flex items-center gap-2 text-xl font-bold text-stone-800">
           <IconBookmark className="h-8 w-8" /> {t.title}

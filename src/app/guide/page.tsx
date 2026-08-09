@@ -1,19 +1,19 @@
 import Link from "next/link";
 import { IconBasket, IconBook, IconBookmark, IconWheel } from "@/components/icons";
 import { getDictionary, getLocale } from "@/lib/i18n";
+import BackLink from "@/components/BackLink";
 
 const icons = [IconBook, IconBookmark, IconWheel, IconBasket];
 
 export default async function GuidePage() {
   const locale = await getLocale();
-  const t = getDictionary(locale).guide;
+  const dict = getDictionary(locale);
+  const t = dict.guide;
 
   return (
     <main className="mx-auto flex max-w-md flex-col gap-5 px-4 py-6">
       <div>
-        <Link href="/" className="text-sm text-moss-700 underline">
-          {t.back}
-        </Link>
+        <BackLink label={dict.common.backToHome} />
         <h1 className="mt-2 text-2xl font-bold text-stone-800">{t.title}</h1>
         <p className="mt-1 text-sm text-stone-500">{t.subtitle}</p>
       </div>

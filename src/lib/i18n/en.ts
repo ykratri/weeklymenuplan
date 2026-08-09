@@ -10,6 +10,7 @@ export const en: Dictionary = {
     addManualPlaceholder: "Add a theme manually...",
     addManualButton: "+ Add",
     back: "Back",
+    backToHome: "← Back to Home",
   },
   nav: {
     home: "Home",
@@ -19,7 +20,7 @@ export const en: Dictionary = {
   },
   home: {
     appName: "🍲 Weekly Kitchen",
-    tagline: "Recipes saved, shopping made easy",
+    tagline: "Save your favorite recipes once, and make weekly shopping effortless.",
     howToUse: "❓ How to use this app",
     shoppingTitle: "Shopping List",
     shoppingDesc: "Pick recipes for this week's shopping",
@@ -68,6 +69,7 @@ export const en: Dictionary = {
     title: "Shopping List",
     emptyPrefix: "Your recipe shelf is empty. Add a recipe first before building a shopping list.",
     subtitle: "Pick the recipes you're cooking this week — the ingredients get merged into one shopping list automatically.",
+    pickPrompt: "👆 Pick recipes above to build your shopping list",
     resultTitle: "🧾 What to buy",
     copy: "📋 Copy",
     copied: "✓ Copied",
@@ -76,6 +78,7 @@ export const en: Dictionary = {
   discover: {
     title: "Discover Recipes",
     intro: "Pick a theme, then swipe through recipe ideas from your Reference Box — swipe right to save, swipe left to skip.",
+    manageReference: "Manage your Reference Box →",
     customPlaceholder: "Or type a new theme...",
     searchButton: "Search",
     themeLabel: "Theme: {theme}",
@@ -94,9 +97,8 @@ export const en: Dictionary = {
     saveAria: "Save to shelf",
   },
   guide: {
-    back: "← Back to Home",
     title: "How to use Weekly Kitchen",
-    subtitle: "4 simple steps, nothing to memorize — just follow along.",
+    subtitle: "4 simple steps, nothing to memorize.",
     steps: [
       {
         title: "1. Fill your Recipe Shelf",
