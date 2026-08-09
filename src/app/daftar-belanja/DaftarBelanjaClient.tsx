@@ -17,6 +17,7 @@ export default function DaftarBelanjaClient({
 }) {
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const [copied, setCopied] = useState(false);
+  const [bought, setBought] = useState<Set<string>>(new Set());
 
   function toggle(id: number) {
     setCopied(false);
@@ -24,6 +25,15 @@ export default function DaftarBelanjaClient({
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
       else next.add(id);
+      return next;
+    });
+  }
+
+  function toggleBought(key: string) {
+    setBought((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
       return next;
     });
   }
@@ -37,10 +47,10 @@ export default function DaftarBelanjaClient({
         if (key && !seen.has(key)) seen.set(key, ingredient.trim());
       }
     }
-    return Array.from(seen.values());
+    return Array.from(seen.entries());
   }, [recipes, selectedIds]);
 
-  const listText = shoppingList.map((item) => `- ${item}`).join("\n");
+  const listText = shoppingList.map(([, label]) => `- ${label}`).join("\n");
 
   async function handleCopy() {
     try {
@@ -115,12 +125,31 @@ export default function DaftarBelanjaClient({
           {shoppingList.length === 0 ? (
             <p className="mt-3 text-sm text-stone-500">{t.noIngredients}</p>
           ) : (
-            <ul className="mt-3 flex flex-col gap-1.5">
-              {shoppingList.map((item) => (
-                <li key={item} className="text-sm text-stone-700">
-                  • {item}
-                </li>
-              ))}
+            <ul className="mt-3 flex flex-col gap-1">
+              {shoppingList.map(([key, label]) => {
+                const isBought = bought.has(key);
+                return (
+                  <li key={key}>
+                    <label className="flex items-center gap-2 py-0.5">
+                      <input
+                        type="checkbox"
+                        checked={isBought}
+                        onChange={() => toggleBought(key)}
+                        className="h-4 w-4 accent-moss-600"
+                      />
+                      <span
+                        className={`text-sm ${
+                          isBought
+                            ? "text-stone-400 line-through"
+                            : "text-stone-700"
+                        }`}
+                      >
+                        {label}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>
