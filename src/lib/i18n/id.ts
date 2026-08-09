@@ -107,8 +107,7 @@ export const id: Dictionary = {
     pickAnotherTheme: "Pilih tema lain",
     saveBadge: "SIMPAN",
     skipBadge: "LEWATI",
-    skipAria: "Lewati",
-    saveAria: "Simpan ke Rak",
+    swipeHint: "👈 Geser kiri untuk lewati · Geser kanan untuk simpan 👉",
   },
   guide: {
     title: "Cara Pakai Dapur Mingguan",
@@ -128,7 +127,7 @@ export const id: Dictionary = {
       },
       {
         title: "3. Bosan? Cari Ide Resep",
-        desc: "Pilih tema masakan, lalu geser kartu ide resep dari Kotak Referensi — geser kanan (atau tekan ➕) untuk simpan ke Rak, geser kiri (atau tekan ✕) untuk lewati.",
+        desc: "Pilih tema masakan, lalu geser kartu ide resep dari Kotak Referensi — geser kanan untuk simpan ke Rak, geser kiri untuk lewati.",
         href: "/cari-ide",
         linkLabel: "Buka Cari Ide Resep",
       },

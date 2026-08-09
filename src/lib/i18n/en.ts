@@ -107,8 +107,7 @@ export const en: Dictionary = {
     pickAnotherTheme: "Pick another theme",
     saveBadge: "SAVE",
     skipBadge: "SKIP",
-    skipAria: "Skip",
-    saveAria: "Save to shelf",
+    swipeHint: "👈 Swipe left to skip · Swipe right to save 👉",
   },
   guide: {
     title: "How to use Weekly Kitchen",
@@ -128,7 +127,7 @@ export const en: Dictionary = {
       },
       {
         title: "3. Bored? Discover Recipes",
-        desc: "Pick a theme, then swipe through recipe ideas from your Reference Box — swipe right (or tap ➕) to save to your shelf, swipe left (or tap ✕) to skip.",
+        desc: "Pick a theme, then swipe through recipe ideas from your Reference Box — swipe right to save to your shelf, swipe left to skip.",
         href: "/cari-ide",
         linkLabel: "Open Discover Recipes",
       },

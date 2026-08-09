@@ -105,8 +105,7 @@ export type Dictionary = {
     pickAnotherTheme: string;
     saveBadge: string;
     skipBadge: string;
-    skipAria: string;
-    saveAria: string;
+    swipeHint: string;
   };
   guide: {
     title: string;

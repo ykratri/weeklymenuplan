@@ -294,27 +294,12 @@ export default function CariIdeClient({
                 {common.viewSource}
               </a>
             )}
-
-            <div className="mt-auto flex justify-center gap-4 pt-4">
-              <button
-                type="button"
-                onClick={() => commitSwipe("left")}
-                aria-label={t.skipAria}
-                className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-red-200 bg-white text-2xl text-red-500 shadow-sm active:bg-red-50"
-              >
-                ✕
-              </button>
-              <button
-                type="button"
-                onClick={() => commitSwipe("right")}
-                aria-label={t.saveAria}
-                className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-moss-300 bg-white text-2xl shadow-sm active:bg-moss-50"
-              >
-                ➕
-              </button>
-            </div>
           </div>
         </div>
+      )}
+
+      {current && (
+        <p className="text-center text-sm text-stone-500">{t.swipeHint}</p>
       )}
     </main>
   );
