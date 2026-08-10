@@ -9,14 +9,16 @@ export default async function LoginPage({
 }) {
   const { error, notice } = await searchParams;
   const locale = await getLocale();
-  const t = getDictionary(locale).auth;
+  const dict = getDictionary(locale);
+  const t = dict.auth;
   const noticeText = notice === "confirm-email" ? t.confirmEmailNotice : notice;
 
   return (
     <main className="mx-auto flex max-w-md flex-col gap-5 px-4 py-10">
       <div className="text-center">
-        <h1 className="text-2xl font-bold text-stone-800">🍲</h1>
-        <h2 className="mt-2 text-xl font-bold text-stone-800">{t.loginTitle}</h2>
+        <h1 className="text-2xl font-bold text-stone-800">{dict.home.appName}</h1>
+        <p className="mt-1 text-sm text-stone-500">{dict.home.tagline}</p>
+        <h2 className="mt-5 text-xl font-bold text-stone-800">{t.loginTitle}</h2>
         <p className="mt-1 text-sm text-stone-500">{t.loginSubtitle}</p>
       </div>
 
