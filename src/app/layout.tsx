@@ -11,8 +11,15 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://weeklymenuplan.vercel.app"),
   title: "Weekly Kitchen",
   description: "Recipes saved, shopping made easy",
+  openGraph: {
+    title: "Weekly Kitchen",
+    description: "Recipes saved, shopping made easy",
+    siteName: "Weekly Kitchen",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {
@@ -29,7 +36,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     <html lang={locale} className={`${geistSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <LocaleSwitcher locale={locale} />
-        <div className="flex-1 pb-24">{children}</div>
+        <div className="flex-1 pb-24 pt-12">{children}</div>
         <BottomNav nav={dict.nav} />
       </body>
     </html>

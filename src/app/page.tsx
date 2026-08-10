@@ -1,22 +1,18 @@
 import Link from "next/link";
 import { IconBasket, IconBook, IconBookmark, IconWheel } from "@/components/icons";
 import { getDictionary, getLocale } from "@/lib/i18n";
+import { signOut } from "@/app/signout/actions";
 
 export default async function Home() {
   const locale = await getLocale();
-  const t = getDictionary(locale).home;
+  const dict = getDictionary(locale);
+  const t = dict.home;
 
   return (
     <main className="mx-auto flex max-w-md flex-col gap-5 px-4 py-8">
       <div className="text-center">
         <h1 className="text-2xl font-bold text-stone-800">{t.appName}</h1>
         <p className="mt-1 text-sm text-stone-500">{t.tagline}</p>
-        <Link
-          href="/guide"
-          className="mt-2 inline-block text-sm font-semibold text-moss-700 underline"
-        >
-          {t.howToUse}
-        </Link>
       </div>
 
       <div className="flex flex-col gap-4">
@@ -64,6 +60,19 @@ export default async function Home() {
           </span>
         </Link>
       </div>
+
+      <Link
+        href="/guide"
+        className="text-center text-sm font-semibold text-moss-700 underline"
+      >
+        {t.howToUse}
+      </Link>
+
+      <form action={signOut} className="text-center">
+        <button type="submit" className="text-sm text-stone-400 underline">
+          {dict.auth.signOutButton}
+        </button>
+      </form>
     </main>
   );
 }

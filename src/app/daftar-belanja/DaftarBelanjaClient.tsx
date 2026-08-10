@@ -3,17 +3,21 @@
 import { useMemo, useState } from "react";
 import type { Recipe } from "@/db/schema";
 import { IconBasket } from "@/components/icons";
+import BackLink from "@/components/BackLink";
 import type { Dictionary } from "@/lib/i18n/dictionary";
 
 export default function DaftarBelanjaClient({
   recipes,
   t,
+  backToHome,
 }: {
   recipes: Recipe[];
   t: Dictionary["shopping"];
+  backToHome: string;
 }) {
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
   const [copied, setCopied] = useState(false);
+  const [bought, setBought] = useState<Set<string>>(new Set());
 
   function toggle(id: number) {
     setCopied(false);
@@ -21,6 +25,15 @@ export default function DaftarBelanjaClient({
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
       else next.add(id);
+      return next;
+    });
+  }
+
+  function toggleBought(key: string) {
+    setBought((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
       return next;
     });
   }
@@ -34,10 +47,10 @@ export default function DaftarBelanjaClient({
         if (key && !seen.has(key)) seen.set(key, ingredient.trim());
       }
     }
-    return Array.from(seen.values());
+    return Array.from(seen.entries());
   }, [recipes, selectedIds]);
 
-  const listText = shoppingList.map((item) => `- ${item}`).join("\n");
+  const listText = shoppingList.map(([, label]) => `- ${label}`).join("\n");
 
   async function handleCopy() {
     try {
@@ -51,6 +64,7 @@ export default function DaftarBelanjaClient({
 
   return (
     <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">
+      <BackLink label={backToHome} />
       <h1 className="flex items-center gap-2 text-xl font-bold text-stone-800">
         <IconBasket className="h-8 w-8" /> {t.title}
       </h1>
@@ -89,7 +103,11 @@ export default function DaftarBelanjaClient({
         })}
       </div>
 
-      {selectedIds.size > 0 && (
+      {selectedIds.size === 0 ? (
+        <div className="rounded-2xl border border-dashed border-moss-300 bg-white p-4 text-center text-sm text-stone-500">
+          {t.pickPrompt}
+        </div>
+      ) : (
         <div className="rounded-2xl border border-moss-200 bg-white p-4 shadow-sm">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold text-stone-800">
@@ -107,12 +125,31 @@ export default function DaftarBelanjaClient({
           {shoppingList.length === 0 ? (
             <p className="mt-3 text-sm text-stone-500">{t.noIngredients}</p>
           ) : (
-            <ul className="mt-3 flex flex-col gap-1.5">
-              {shoppingList.map((item) => (
-                <li key={item} className="text-sm text-stone-700">
-                  • {item}
-                </li>
-              ))}
+            <ul className="mt-3 flex flex-col gap-1">
+              {shoppingList.map(([key, label]) => {
+                const isBought = bought.has(key);
+                return (
+                  <li key={key}>
+                    <label className="flex items-center gap-2 py-0.5">
+                      <input
+                        type="checkbox"
+                        checked={isBought}
+                        onChange={() => toggleBought(key)}
+                        className="h-4 w-4 accent-moss-600"
+                      />
+                      <span
+                        className={`text-sm ${
+                          isBought
+                            ? "text-stone-400 line-through"
+                            : "text-stone-700"
+                        }`}
+                      >
+                        {label}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>

@@ -2,16 +2,18 @@ import Link from "next/link";
 import { getExtraThemes } from "@/db/queries";
 import { PREDEFINED_TAGS } from "@/lib/tags";
 import { getDictionary, getLocale } from "@/lib/i18n";
+import { requireUser } from "@/lib/supabase/auth";
 import TagPicker from "@/components/TagPicker";
 import { addRecipe } from "../actions";
 
 export const dynamic = "force-dynamic";
 
 export default async function TambahResepPage() {
+  const user = await requireUser();
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const t = dict.shelfAdd;
-  const extraThemes = await getExtraThemes();
+  const extraThemes = await getExtraThemes(user.id);
   const predefined = PREDEFINED_TAGS.map((tag) => ({
     value: tag.value,
     label: tag[locale],

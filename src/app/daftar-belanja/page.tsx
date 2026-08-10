@@ -1,22 +1,30 @@
 import Link from "next/link";
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { recipes } from "@/db/schema";
 import { IconBasket } from "@/components/icons";
 import { getDictionary, getLocale } from "@/lib/i18n";
+import { requireUser } from "@/lib/supabase/auth";
+import BackLink from "@/components/BackLink";
 import DaftarBelanjaClient from "./DaftarBelanjaClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function DaftarBelanjaPage() {
+  const user = await requireUser();
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const t = dict.shopping;
-  const items = await db.select().from(recipes).orderBy(desc(recipes.createdAt));
+  const items = await db
+    .select()
+    .from(recipes)
+    .where(eq(recipes.userId, user.id))
+    .orderBy(desc(recipes.createdAt));
 
   if (items.length === 0) {
     return (
       <main className="mx-auto flex max-w-md flex-col gap-4 px-4 py-6">
+        <BackLink label={dict.common.backToHome} />
         <h1 className="flex items-center gap-2 text-xl font-bold text-stone-800">
           <IconBasket className="h-8 w-8" /> {t.title}
         </h1>
@@ -35,5 +43,11 @@ export default async function DaftarBelanjaPage() {
     );
   }
 
-  return <DaftarBelanjaClient recipes={items} t={t} />;
+  return (
+    <DaftarBelanjaClient
+      recipes={items}
+      t={t}
+      backToHome={dict.common.backToHome}
+    />
+  );
 }

@@ -3,11 +3,16 @@ export type Dictionary = {
     ingredientsLabel: string;
     viewSource: string;
     deleteAria: string;
+    editAria: string;
+    editButton: string;
+    confirmDelete: string;
     tagsLabel: string;
     tagsHelp: string;
     addManualPlaceholder: string;
     addManualButton: string;
     back: string;
+    backToHome: string;
+    noSearchResults: string;
   };
   nav: {
     home: string;
@@ -29,6 +34,7 @@ export type Dictionary = {
   shelf: {
     title: string;
     addButton: string;
+    searchPlaceholder: string;
     emptyPrefix: string;
     emptyLinkLabel: string;
     emptySuffix: string;
@@ -44,9 +50,14 @@ export type Dictionary = {
     sourcePlaceholder: string;
     submit: string;
   };
+  shelfEdit: {
+    title: string;
+    submit: string;
+  };
   reference: {
     title: string;
     addButton: string;
+    searchPlaceholder: string;
     desc: string;
     empty: string;
   };
@@ -62,10 +73,15 @@ export type Dictionary = {
     ingredientsPlaceholder: string;
     submit: string;
   };
+  referenceEdit: {
+    title: string;
+    submit: string;
+  };
   shopping: {
     title: string;
     emptyPrefix: string;
     subtitle: string;
+    pickPrompt: string;
     resultTitle: string;
     copy: string;
     copied: string;
@@ -74,6 +90,7 @@ export type Dictionary = {
   discover: {
     title: string;
     intro: string;
+    manageReference: string;
     customPlaceholder: string;
     searchButton: string;
     themeLabel: string;
@@ -88,11 +105,25 @@ export type Dictionary = {
     pickAnotherTheme: string;
     saveBadge: string;
     skipBadge: string;
-    skipAria: string;
-    saveAria: string;
+    swipeHint: string;
+  };
+  auth: {
+    emailLabel: string;
+    passwordLabel: string;
+    loginTitle: string;
+    loginSubtitle: string;
+    signInButton: string;
+    noAccountPrefix: string;
+    signUpLink: string;
+    signupTitle: string;
+    signupSubtitle: string;
+    signUpButton: string;
+    haveAccountPrefix: string;
+    signInLink: string;
+    signOutButton: string;
+    confirmEmailNotice: string;
   };
   guide: {
-    back: string;
     title: string;
     subtitle: string;
     steps: {
