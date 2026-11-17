@@ -4,7 +4,6 @@ export type Dictionary = {
     viewSource: string;
     deleteAria: string;
     editAria: string;
-    editButton: string;
     confirmDelete: string;
     tagsLabel: string;
     tagsHelp: string;
@@ -81,6 +80,7 @@ export type Dictionary = {
     title: string;
     emptyPrefix: string;
     subtitle: string;
+    searchPlaceholder: string;
     pickPrompt: string;
     resultTitle: string;
     copy: string;

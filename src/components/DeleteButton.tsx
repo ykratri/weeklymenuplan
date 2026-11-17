@@ -1,5 +1,7 @@
 "use client";
 
+import { IconDelete } from "./icons";
+
 export default function DeleteButton({
   action,
   id,
@@ -22,9 +24,9 @@ export default function DeleteButton({
       <button
         type="submit"
         aria-label={ariaLabel}
-        className="shrink-0 rounded-full px-2 py-1 text-lg text-stone-400 active:text-red-600"
+        className="shrink-0 rounded-full p-2 text-stone-400 active:text-red-600"
       >
-        🗑️
+        <IconDelete className="h-5 w-5" />
       </button>
     </form>
   );

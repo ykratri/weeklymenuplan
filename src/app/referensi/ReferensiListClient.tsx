@@ -7,6 +7,7 @@ import type { Dictionary } from "@/lib/i18n/dictionary";
 import type { Locale } from "@/lib/i18n/types";
 import { format } from "@/lib/i18n/format";
 import { translateTag } from "@/lib/tags";
+import { IconEdit } from "@/components/icons";
 import DeleteButton from "@/components/DeleteButton";
 
 export default function ReferensiListClient({
@@ -75,9 +76,9 @@ export default function ReferensiListClient({
                   <Link
                     href={`/referensi/${item.id}/edit`}
                     aria-label={format(dict.common.editAria, { name: item.name })}
-                    className="rounded-full px-2 py-1 text-sm font-medium text-moss-600"
+                    className="rounded-full p-2 text-moss-600 active:text-moss-800"
                   >
-                    {dict.common.editButton}
+                    <IconEdit className="h-5 w-5" />
                   </Link>
                   <DeleteButton
                     action={deleteReferenceItem}

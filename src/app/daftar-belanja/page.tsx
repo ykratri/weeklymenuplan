@@ -47,6 +47,7 @@ export default async function DaftarBelanjaPage() {
     <DaftarBelanjaClient
       recipes={items}
       t={t}
+      common={dict.common}
       backToHome={dict.common.backToHome}
     />
   );
